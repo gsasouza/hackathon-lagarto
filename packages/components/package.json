@@ -1,0 +1,31 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^3.0.3",
+    "hoist-non-react-statics": "^3.0.1",
+    "react": "^16.5.0",
+    "styled-components": "^3.4.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.0.0",
+    "@types/hoist-non-react-statics": "^3.0.1",
+    "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-relay": "^1.6.2",
+    "eslint": "^5.5.0",
+    "eslint-plugin-import": "^2.14.0",
+    "typescript": "^3.0.3"
+  }
+}

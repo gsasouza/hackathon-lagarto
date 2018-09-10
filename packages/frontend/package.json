@@ -1,0 +1,48 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint:staged": "lint-staged",
+    "start": "webpack-dev-server --config webpack.config.js --progress",
+    "relay": "relay-compiler --src ./src --schema ./schema.json --extensions ts tsx js",
+    "relay:watch": "yarn relay --watch",
+    "webpack:build": "webpack -p"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^3.0.3",
+    "components": "^1.0.0",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-router-dom": "^4.3.1",
+    "router-utils": "^1.0.0",
+    "security-utils": "^1.0.0",
+    "styled-components": "^3.4.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.0.0",
+    "@types/react-dom": "^16.0.7",
+    "@types/react-router-dom": "^4.3.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-relay": "^1.6.2",
+    "dotenv-webpack": "^1.5.7",
+    "eslint": "^5.5.0",
+    "eslint-plugin-import": "^2.14.0",
+    "html-webpack-plugin": "^3.2.0",
+    "relay-compiler": "^1.6.2",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8",
+    "webpack-serve": "^2.0.2"
+  }
+}
