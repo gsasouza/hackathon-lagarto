@@ -1,0 +1,66 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": true,
+      "eslint-import-resolver-typescript": true
+    }
+  },
+  "plugins": [
+    "react",
+    "import",
+    "relay"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors"
+  ],
+  "rules": {
+    "comma-dangle": [2, "always-multiline"],
+    "quotes": [2, "single", { "allowTemplateLiterals": true }],
+    "react/prop-types": 0,
+    "no-case-declarations": 0,
+    "react/jsx-no-bind": 0,
+    "react/display-name": 0,
+    "new-cap": 0,
+    "no-unexpected-multiline": 0,
+    "no-class-assign": 1,
+    "no-console": 2,
+    "object-curly-spacing": [1, "always"],
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
+    "import/first": 2,
+    "import/default": 0,
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "no-extra-boolean-cast": 0,
+    "import/named": 0,
+    "import/namespace": [2, { "allowComputed": true }],
+    "import/no-duplicates": 2,
+    "import/order": [2, {"newlines-between": "always-and-inside-groups"}],
+    "react/no-children-prop": 1,
+    "react/no-deprecated": 1,
+    "import/no-cycle": 1,
+    "import/no-self-import": 1,
+    "import/extensions": [0,"never", {"ts": "never"}],
+    "relay/graphql-syntax": 1,
+    "relay/compat-uses-vars": 1,
+    "relay/graphql-naming": 1,
+    "relay/generated-flow-types": 1,
+    "relay/no-future-added-value": 1,
+    "relay/unused-fields": 1
+  }
+}
