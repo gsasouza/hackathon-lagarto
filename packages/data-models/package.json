@@ -1,0 +1,16 @@
+{
+  "name": "data-models",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@entria/graphql-mongoose-loader": "^2.1.1",
+    "bcryptjs": "^2.4.3",
+    "dataloader": "^1.4.0",
+    "graphql-relay": "^0.5.5",
+    "mongoose": "^5.2.14"
+  },
+  "devDependencies": {
+    "@types/graphql-relay": "^0.4.6"
+  }
+}
