@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Caminhos do Campus",
+    "version": "1.0.0",
+    "slug": "campus-ways",
+    "sdkVersion": "27.0.0",
+    "ios": {
+      "bundleIdentifier": "com.gsasouza.caminhosdocampus"
+    },
+    "android": {
+      "package": "com.gsasouza.caminhosdocampus"
+    }
+  }
+}
