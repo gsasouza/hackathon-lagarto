@@ -10,7 +10,25 @@ const Schema = new mongoose.Schema(
     description: {
       type: String,
       required: true,
+    },
+    dateStart: {
+      type: Date,
+      required: true,
+      default: Date.now
+    },
+    dateEnd: {
+      type: Date,
+      required: true
+    },
+    mark:{
+      type: Schema.Types.ObjectId,
+      ref: 'Mark'
+    },
+    build:{
+      type: Schema.Types.ObjectId,
+      ref: 'Build'
     }
+
   },
   {
     timestamps: {

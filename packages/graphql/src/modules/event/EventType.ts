@@ -1,6 +1,6 @@
 // @flow
 
-import { GraphQLObjectType, GraphQLString,  GraphQLList } from 'graphql';
+import { GraphQLObjectType, GraphQLString} from 'graphql';
 import { globalIdField } from 'graphql-relay';
 //import { NodeInterface } from '../../interface/NodeInterface';
 import { MarkLoader, BuildLoader } from 'data-models';
@@ -18,6 +18,14 @@ export default new GraphQLObjectType({
     name: {
       type: GraphQLString,
       resolve: path => path.name,
+    },
+    dateStart: {
+      type: GraphQLString,
+      resolve: path => path.dateStart,
+    },
+    dateEnd: {
+      type: GraphQLString,
+      resolve: path => path.dateEnd,
     },
     mark: {
       type: MarkType,

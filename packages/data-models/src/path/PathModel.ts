@@ -9,7 +9,11 @@ const Schema = new mongoose.Schema(
     },
     description:{
       type: String
-    }
+    },
+    marks:[{
+      type: Schema.Types.ObjectId,
+      ref: 'Mark'
+    }]
   },
   {
     timestamps: {
