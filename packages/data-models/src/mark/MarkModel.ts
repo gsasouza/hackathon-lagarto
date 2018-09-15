@@ -1,62 +1,33 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
+
 
 const Schema = new mongoose.Schema(
   {
-    name: {
-      type: String,
+    latitude: {
+      type: Number,
+      required: true
     },
-    email: {
-      type: String,
+    longitude: {
+      type: Number,
       required: true,
     },
-    password: {
+    type: {
       type: String,
-      required: true,
-      trim: true,
-      hidden: true,
-    },
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    },
-    active: {
-      type: Boolean,
-      default: true,
-    },
+      enum:[
+        'event',
+        'path',
+        'build'
+      ]
+    }
   },
   {
     timestamps: {
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-    collection: 'user',
+    collection: 'mark',
   },
 );
 
-Schema.pre('save', async function(next) {
-  if (this.isModified('password')) {
-    try {
-      this.password = await this.encryptPassword(this.password);
-    }
-    catch (e) {
-      next(e);
-    }
-  }
-  return next();
-});
 
-Schema.methods = {
-  async authenticate(plainText) {
-    try {
-      return await bcrypt.compare(plainText, this.password);
-    } catch (err) {
-      return false;
-    }
-  },
-  encryptPassword(password) {
-    return bcrypt.hash(password, 8);
-  },
-};
-
-export default mongoose.model('User', Schema);
+export default mongoose.model('Mark', Schema);

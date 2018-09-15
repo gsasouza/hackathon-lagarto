@@ -4,48 +4,45 @@ import { ConnectionArguments } from 'graphql-relay';
 
 import { DataloaderContext } from '../types/context';
 
-import UserModel from './UserModel';
+import MarkModel from './MarkModel';
 
-export type UserType = {
+export type MarkType = {
   id: string,
   _id: string,
-  name: string,
-  password?: string,
-  email: string,
-  active: boolean,
-  isAdmin: boolean,
+  latitude: string,
+  longitude: string,
+  type: string
 };
 
-export default class User {
+export default class Mark {
   id: string;
   _id: string;
-  name: string;
-  email: string;
-  active: boolean;
-  isAdmin: boolean;
+  latitude: string;
+  longitude: string;
+  type: string;
 
-  constructor(data: UserType) {
+  constructor(data: MarkType) {
     this.id = data.id;
     this._id = data._id;
-    this.name = data.name;
-    this.isAdmin = data.isAdmin;
-    this.email = data.email;
-    this.active = data.active;
+    this.latitude = data.latitude;
+    this.longitude = data.longitude;
+    this.type = data.type;
+
   }
 }
 
 export const getLoader = () =>
-  new DataLoader((ids: Array<string>) => mongooseLoader(UserModel, ids));
+  new DataLoader((ids: Array<string>) => mongooseLoader(MarkModel, ids));
 
 const viewerCanSee = () => true;
 
-export const load = async (context: DataloaderContext, id: string): Promise<UserType | null> => {
+export const load = async (context: DataloaderContext, id: string): Promise<MarkType | null> => {
   try {
     if (!id) {
       return null;
     }
-    const data = await context.dataloaders.UserLoader.load(id);
-    return viewerCanSee() ? new User(data) : null;
+    const data = await context.dataloaders.MarkLoader.load(id);
+    return viewerCanSee() ? new Mark(data) : null;
   } catch (err) {
     return null;
   }
@@ -55,12 +52,12 @@ type Args = {
   search: string,
 } & ConnectionArguments;
 
-export const loadUsers = async (context: DataloaderContext, args: Args) => {
+export const loadMarks = async (context: DataloaderContext, args: Args) => {
   const where = args.search ? { name: { $regex: new RegExp(`^${args.search}`, 'ig') } } : {};
-  const users = UserModel.find(where, { _id: 1 }).sort({ createdAt: -1 });
+  const marks = MarkModel.find(where, { _id: 1 }).sort({ createdAt: -1 });
 
   return connectionFromMongoCursor({
-    cursor: users,
+    cursor: marks,
     context,
     args,
     loader: load,
