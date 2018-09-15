@@ -2,5 +2,8 @@
   "dependencies": {
     "lerna": "^3.3.0"
   },
-  "name": "monorepo"
+  "name": "monorepo",
+  "devDependencies": {
+    "@types/mongoose": "^5.2.13"
+  }
 }
