@@ -20,14 +20,20 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
+    "babel-plugin-relay": "^1.6.2",
     "expo": "^27.0.1",
     "hoist-non-react-statics": "^3.0.1",
     "native-base": "^2.8.0",
+    "prop-types": "^15.6.2",
     "react": "16.3.1",
     "react-native": "~0.55.2",
+    "react-native-drawer": "^2.5.0",
     "react-native-maps": "^0.21.0",
     "react-native-material-design": "^0.3.7",
     "react-navigation": "^2.14.0",
+    "react-relay": "^1.6.2",
+    "relay-compiler": "^1.6.2",
+    "relay-runtime": "^1.6.2",
     "styled-components": "^3.4.6"
   }
 }

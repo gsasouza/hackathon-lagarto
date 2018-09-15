@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.0.1",
+    "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-typescript": "^7.0.0",
     "babel-eslint": "^9.0.0",
@@ -22,6 +23,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
+    "@babel/cli": "^7.0.0",
     "data-models": "^1.0.0",
     "graphql": "^14.0.2",
     "graphql-playground-middleware": "^1.1.2",

@@ -1,70 +1,8 @@
 import React from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
-import { Footer, FooterTab, Button, Icon, Text as NBText } from 'native-base';
-import Map from '../components/Map';
-import EventList from '../screens/events/EventList';
+import { ActivityIndicator } from 'react-native';
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
-
-class SettingsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
-
-const TabNavigator = createBottomTabNavigator(
-  {
-    Mapa: Map,
-    Eventos: EventList,
-    Rotas: SettingsScreen,
-  },
-  {
-    tabBarComponent: props => {
-      return (
-        <Footer>
-          <FooterTab>
-            <Button
-              vertical
-              active={props.navigation.state.index === 0}
-              onPress={() => props.navigation.navigate("Mapa")}>
-              <Icon name="map" />
-              <NBText>Mapas</NBText>
-            </Button>
-            <Button
-              vertical
-              active={props.navigation.state.index === 1}
-              onPress={() => props.navigation.navigate("Eventos")}>
-              <Icon name="list" />
-              <NBText>Eventos</NBText>
-            </Button>
-            <Button
-              vertical
-              active={props.navigation.state.index === 2}
-              onPress={() => props.navigation.navigate("Rotas")}>
-              <Icon name="navigate" />
-              <NBText>Caminhos</NBText>
-            </Button>
-          </FooterTab>
-        </Footer>
-      );
-    },
-    tabBarPosition: "bottom",
-    animationEnabled: true,
-  }
-);
+import RootStack from '../navigators/RootStack';
+import Sidebar from '../components/Sidebar';
 
 export default class MainRouter extends React.Component {
 
@@ -82,7 +20,15 @@ export default class MainRouter extends React.Component {
   }
 
   render() {
+    console.log(JSON.stringify(this.props));
     const { isLoading } = this.state;
-    return isLoading ? <ActivityIndicator size="large"/> : <TabNavigator {...this.props} />
+    return isLoading ? (
+      <ActivityIndicator size="large"/>
+    ) : (
+      <Sidebar>
+        <RootStack />
+      </Sidebar>
+    )
+
   }
 }
