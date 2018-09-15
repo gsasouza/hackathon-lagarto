@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
 import RootStack from '../navigators/RootStack';
 import Sidebar from '../components/Sidebar';
@@ -16,14 +16,15 @@ export default class MainRouter extends React.Component {
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     });
 
-    return this.setState({ isLoading: false }, () => console.log('here'));
+    return this.setState({ isLoading: false });
   }
 
   render() {
-    console.log(JSON.stringify(this.props));
     const { isLoading } = this.state;
     return isLoading ? (
-      <ActivityIndicator size="large"/>
+      <View>
+        <ActivityIndicator size="large"/>
+      </View>
     ) : (
       <Sidebar>
         <RootStack />

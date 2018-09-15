@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import styled from 'styled-components';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,6 +11,7 @@ import withSnackbar from '../hoc/withSidebar';
 const HeaderWrapper = styled.View`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: flex-end;
   padding-top: 25px;
   padding-left: 10px;
@@ -24,19 +25,15 @@ const IconWrapper = styled.View`
 
 const HeaderTitle = styled.Text`
   align-self: center;
-  color: #000;
+  color: #fff;
 `;
 
 const Header = withSnackbar(
   (props) => {
     const { title = 'Teste', toggleSidebar } = props;
-    console.log();
     return (
       <HeaderWrapper>
-        <TouchableOpacity onPress={() => {
-          console.log('touchable', props.toggleSidebar)
-          return toggleSidebar()
-        }}>
+        <TouchableOpacity onPress={() => toggleSidebar()}>
           <IconWrapper>
             <Ionicons name="md-menu" size={36} color={'white'} />
           </IconWrapper>
@@ -44,6 +41,7 @@ const Header = withSnackbar(
         <HeaderTitle>
           { title }
         </HeaderTitle>
+        <View />
       </HeaderWrapper>
     )
   }
