@@ -5,8 +5,8 @@ import { ConnectionArguments } from 'graphql-relay';
 import { DataloaderContext } from '../types/context';
 
 import EventModel from './EventModel';
-import { MarkType } from '../mark/MarkLoader';
-import { BuildType } from '../build/BuidLoader';
+import { MarkType } from '../modules/mark/MarkType';
+import { BuildType } from '../modules/build/BuildType';
 
 
 export type EventType = {

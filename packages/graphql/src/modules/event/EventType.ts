@@ -4,14 +4,14 @@ import { GraphQLObjectType, GraphQLString} from 'graphql';
 import { globalIdField } from 'graphql-relay';
 //import { NodeInterface } from '../../interface/NodeInterface';
 import MarkLoader from '../../mark/MarkLoader';
-import BuildLoader from '../../build/BuildLoader';
+import BuildLoader from '../../build/BuidLoader';
 import MarkType from '../mark/MarkType';
 
 export default new GraphQLObjectType({
-  name: 'Path',
-  description: 'Path data',
+  name: 'Event',
+  description: 'Event data',
   fields: () => ({
-    id: globalIdField('Path'),
+    id: globalIdField('Event'),
     _id: {
       type: GraphQLString,
       resolve: path => path._id,

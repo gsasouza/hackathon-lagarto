@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import DataLoader from 'dataloader';
 import { connectionFromMongoCursor, mongooseLoader } from '@entria/graphql-mongoose-loader';
-import UserModel from './UserModel';
+
 export default class User {
     constructor(data) {
         this.id = data.id;

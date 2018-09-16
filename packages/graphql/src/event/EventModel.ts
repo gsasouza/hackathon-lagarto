@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
-
-const Schema = new mongoose.Schema(
+const eventSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -40,4 +40,4 @@ const Schema = new mongoose.Schema(
 );
 
 
-export default mongoose.model('Event', Schema);
+export default mongoose.model('Event', eventSchema);

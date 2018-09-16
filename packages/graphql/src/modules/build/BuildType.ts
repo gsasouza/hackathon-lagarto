@@ -3,12 +3,12 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql';
 import { globalIdField } from 'graphql-relay';
 //import { NodeInterface } from '../../interface/NodeInterface';
-import { MarkLoader } from 'data-models';
+import { MarkLoader } from '../../mark/MarkLoader';
 import MarkType from '../mark/MarkType';
 
 export default new GraphQLObjectType({
   name: 'Path',
-  description: 'User data',
+  description: 'Path data',
   fields: () => ({
     id: globalIdField('Path'),
     _id: {
