@@ -6,13 +6,13 @@
     "icon": "./src/static/icon.png",
     "sdkVersion": "27.0.0",
     "ios": {
-      "bundleIdentifier": "com.gsasouza.caminhosdocampus"
+      "bundleIdentifier": "com.gsasouza.emcaminhado"
     },
     "android": {
-      "package": "com.gsasouza.caminhosdocampus",
+      "package": "com.gsasouza.emcaminhado",
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyC2pqjnDm3CQ8322KMBIjXMqQmks6PIjEs"
+          "apiKey": "AIzaSyB9PD7Gid_1vFSoJXng_i3OYEe6agG7PPI"
         }
       }
     }
