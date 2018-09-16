@@ -5,16 +5,18 @@ import { globalIdField, connectionArgs, fromGlobalId } from 'graphql-relay';
 
 //import { NodeField } from '../interface/NodeInterface';
 
-import {
-  UserLoader
-} from 'data-models';
-
+import UserLoader from '../user/UserLoader';
 import UserType from '../modules/user/UserType';
+
+import {EventLoader} from '../event/EventLoader';
+
+
 
 export default new GraphQLObjectType({
   name: 'Query',
   description: 'The root of all... queries',
  fields: () => ({
+   node: NodeField,
    me: {
      type: UserType,
      resolve: (root, args, context) => (context.user ? UserLoader.load(context, context.user._id) : null),
@@ -31,5 +33,6 @@ export default new GraphQLObjectType({
        return UserLoader.load(context, id);
      },
    },
+        
   })
 });
