@@ -25,9 +25,7 @@ const Schema = new mongoose.Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-    collection: 'mark',
   },
 );
-
 
 export default mongoose.model('Mark', Schema);

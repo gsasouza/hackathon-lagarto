@@ -1,11 +1,14 @@
 import mongoose from 'mongoose';
 
-
 const Schema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true
+    },
+    mark: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Mark',
     }
   },
   {
@@ -13,7 +16,7 @@ const Schema = new mongoose.Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-    collection: 'event',
+    collection: 'build',
   },
 );
 
