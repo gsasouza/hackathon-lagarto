@@ -16,7 +16,7 @@ const Schema = new mongoose.Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-    collection: 'event',
+    collection: 'build',
   },
 );
 

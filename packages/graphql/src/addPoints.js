@@ -5,7 +5,7 @@ import Build from './build/BuildModel';
 export default async () => {
   const marks = [
     {
-      name: 'Prédio Administrativo',
+      name: ['Prédio Administrativo'],
       latitude: -10.928626,
       longitude: -37.672211,
       type: 'build',
@@ -68,13 +68,13 @@ export default async () => {
         latitude: markObj.latitude,
         longitude: markObj.longitude,
         type: markObj.type,
-      });
+      }).save();
 
       for (const name of markObj.name){
         const build = await new Build({
           name: name,
           mark: mark._id,
-        });
+        }).save();
         console.log(`Added ${JSON.stringify(mark)} ${JSON.stringify(build)}`)
       }
 

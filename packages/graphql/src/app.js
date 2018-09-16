@@ -12,12 +12,9 @@ import { koaPlayground } from 'graphql-playground-middleware';
 
 import { schema } from './schema';
 import registerLoaders from './registerLoaders';
-import addPoints from './addPoints';
 
 const app = new Koa();
 const router = new Router();
-
-addPoints();
 
 router.all(
   '/playground',

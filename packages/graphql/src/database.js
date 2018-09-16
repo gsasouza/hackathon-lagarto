@@ -8,6 +8,6 @@ export default function connectDatabase() {
     .on('close', () => console.log('Database connection closed.'))
     .once('open', () => resolve(mongoose.connections[0]));
 
-    mongoose.connect('mongodb://localhost:27017/hackathon-lagarto');
+    mongoose.connect('mongodb://gabriel:gabriel123@ds257752.mlab.com:57752/hackathon-lagarto');
   });
 }
