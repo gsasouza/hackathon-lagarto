@@ -1,16 +1,23 @@
-"""The root of all... queries"""
-type Query {
-  me: User
-  user(id: ID!): User
+"""Mark data"""
+type Mark {
+  """The ID of an object"""
+  id: ID!
+  _id: String
+  latitude: String
+  longitude: String
+  type: String
 }
 
-"""User data"""
-type User {
+"""Path data"""
+type Path {
   """The ID of an object"""
   id: ID!
   _id: String
   name: String
-  isAdmin: Boolean
-  email: String
-  active: Boolean
+  mark: Mark
+}
+
+"""The root of all... queries"""
+type Query {
+  builds: [Path]
 }
