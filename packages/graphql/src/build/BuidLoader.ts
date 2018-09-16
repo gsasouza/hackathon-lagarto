@@ -58,12 +58,7 @@ type Args = {
 
 export const loadBuilds = async (context: DataloaderContext, args: Args) => {
   const where = args.search ? { name: { $regex: new RegExp(`^${args.search}`, 'ig') } } : {};
-  const builds = BuildModel.find(where, { _id: 1 }).sort({ createdAt: -1 });
-
-  return connectionFromMongoCursor({
-    cursor: builds,
-    context,
-    args,
-    loader: load,
-  });
+  const builds = await BuildModel.find(where).sort({ createdAt: -1 });
+  console.log(builds)
+  return builds;
 };

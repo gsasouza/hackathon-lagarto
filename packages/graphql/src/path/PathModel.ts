@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 const Schema = new mongoose.Schema(
   {
     name:{
@@ -11,7 +10,7 @@ const Schema = new mongoose.Schema(
       type: String
     },
     marks:[{
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Mark'
     }]
   },

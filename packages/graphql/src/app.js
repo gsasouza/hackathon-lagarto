@@ -10,7 +10,7 @@ import Router from 'koa-router';
 import { koaPlayground } from 'graphql-playground-middleware';
 
 
-import { schema } from './schema';
+import schema from './schema';
 import registerLoaders from './registerLoaders';
 
 const app = new Koa();
@@ -26,6 +26,7 @@ router.all(
 const graphqlSettingsPerReq = async req => {
 
   const dataloaders = registerLoaders();
+  console.log(schema)
 
   return {
     graphiql: process.env.NODE_ENV !== 'production',

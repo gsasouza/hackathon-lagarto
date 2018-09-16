@@ -3,7 +3,7 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql';
 import { globalIdField } from 'graphql-relay';
 //import { NodeInterface } from '../../interface/NodeInterface';
-import { MarkLoader } from '../../mark/MarkLoader';
+import * as MarkLoader from '../../mark/MarkLoader';
 import MarkType from '../mark/MarkType';
 
 export default new GraphQLObjectType({
@@ -21,7 +21,7 @@ export default new GraphQLObjectType({
     },
     mark: {
       type: MarkType,
-      resolve: (obj, args, context) => MarkLoader.loadMarks(context, obj.mark),
+      resolve: (obj, args, context) => MarkLoader.load(context, obj.mark),
     }
   }),
   //interfaces: () => [NodeInterface],
