@@ -27,8 +27,6 @@
   "dependencies": {
     "@babel/cli": "^7.0.0",
     "babel-polyfill": "^6.26.0",
-    "data-models": "^1.0.0",
-    "data-models-hackathon": "^1.0.0",
     "graphql": "^14.0.2",
     "graphql-playground-middleware": "^1.1.2",
     "graphql-relay": "^0.5.5",

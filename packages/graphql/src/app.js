@@ -11,7 +11,7 @@ import { koaPlayground } from 'graphql-playground-middleware';
 
 
 import { schema } from './schema';
-import { registerLoaders } from 'data-models-hackathon';
+import registerLoaders from './registerLoaders';
 
 const app = new Koa();
 const router = new Router();
