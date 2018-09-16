@@ -1,30 +1,29 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { ListItem, Text, Left, Right } from 'native-base';
 
+import Collapse from '../../components/common/Collapse';
 
 const items = [
   {
     id: '1',
     name: 'nome',
-    hour: '13:40'
+    hour: '13:40',
+    description: 'descrição do evento',
+  },
+  {
+    id: '2',
+    name: 'nome2',
+    hour: '15:40',
+    description: 'descrição do evento 2',
   }
 ];
+
 class EventList extends React.Component {
 
-  renderItem = ({ item }) => {
-    const { name, hour } = item;
-    return (
-      <ListItem>
-        <Left>
-          <Text>{name}</Text>
-        </Left>
-        <Right>
-          <Text>{hour}</Text>
-        </Right>
-      </ListItem>
-    )
-  };
+  renderItem = (item) => (
+    <Collapse item={item}/>
+  );
+
   render() {
     return (
       <FlatList

@@ -1,0 +1,16 @@
+"""The root of all... queries"""
+type Query {
+  me: User
+  user(id: ID!): User
+}
+
+"""User data"""
+type User {
+  """The ID of an object"""
+  id: ID!
+  _id: String
+  name: String
+  isAdmin: Boolean
+  email: String
+  active: Boolean
+}

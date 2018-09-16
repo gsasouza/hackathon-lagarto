@@ -3,12 +3,18 @@
     "name": "Caminhos do Campus",
     "version": "1.0.0",
     "slug": "campus-ways",
+    "icon": "./src/static/icon.png",
     "sdkVersion": "27.0.0",
     "ios": {
       "bundleIdentifier": "com.gsasouza.caminhosdocampus"
     },
     "android": {
-      "package": "com.gsasouza.caminhosdocampus"
+      "package": "com.gsasouza.caminhosdocampus",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAFxDeMap3BWG3wZ3HefqcyDGQKStd4Qxc"
+        }
+      }
     }
   }
 }

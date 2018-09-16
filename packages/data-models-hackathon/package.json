@@ -1,8 +1,11 @@
 {
-  "name": "data-models",
+  "name": "data-models-hackathon",
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "babel-node src —-out-dir dist"
+  },
   "dependencies": {
     "@entria/graphql-mongoose-loader": "^2.1.1",
     "bcryptjs": "^2.4.3",

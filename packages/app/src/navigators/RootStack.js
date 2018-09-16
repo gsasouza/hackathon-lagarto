@@ -3,10 +3,11 @@ import { TouchableOpacity, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import styled from 'styled-components';
 import { Ionicons } from '@expo/vector-icons';
-import MapTabs from './MapTabs';
 
+import MapTabs from './MapTabs';
+import Sidebar from '../components/Sidebar';
 import withSnackbar from '../hoc/withSidebar';
-// import Map from '../components/Map';
+
 
 const HeaderWrapper = styled.View`
   display: flex;

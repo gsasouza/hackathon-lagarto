@@ -1,19 +1,23 @@
 import React from 'react';
-import { View, CheckBox, Image } from 'react-native';
+import { withNavigation } from 'react-navigation';
+import Checkbox from 'react-native-custom-checkbox';
 import Drawer from 'react-native-drawer';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 
 import SidebarContext from '../context/SidebarContext';
+import FilterContext from '../context/FilterContext';
 
 const SidebarLabel = styled.Text`
-  font-size: 20px;
+  font-size: 24px;
   color: #4a56b8;
   text-align: center;
+  padding: 10px 0;
 `;
 
 const SidebarImage = styled.Image`
-  height: 100px;
+   height: 160px;
+   width: 100%; 
 `;
 
 const Border = styled.View`
@@ -33,68 +37,102 @@ const Separator = styled.View`
 const Row = styled.View`
   display: flex;
   flex-direction: row;
-`;
-
-const Checkbox = styled(CheckBox)`
-  margin: 5px;
+  align-items: center;
 `;
 
 const CheckboxLabel = styled.Text`
-  font-size: 14px;
+  font-size: 20px;
   text-align: center;
 `;
 
-const List = () => (
-  <Wrapper>
-    <Border/>
-    <SidebarImage
-      source={{
-        uri: 'https://previews.123rf.com/images/creativika/creativika1610/creativika161000098/66913476-folding-paper-city-map-with-location-mark-and-flag-labels-colored-flat-icon-vector-eps8-illustration.jpg'
-      }}
-    />
-    <SidebarLabel>
-      Mostrar no Mapa
-    </SidebarLabel>
-    <Separator/>
-    <Formik
-      initialValues={{ firstName: '' }}
-      onSubmit={values => console.log(values)}>
-      {({ handleChange, handleSubmit, values }) => (
-        <View>
-          <Row>
-            <Checkbox
-              onChange={() => {}}
-              value={true}
-            />
-            <CheckboxLabel>
-              Edifícios
-            </CheckboxLabel>
-          </Row>
-          <Row>
-            <Checkbox
-              onChange={() => {}}
-              value={false}
-            />
-            <CheckboxLabel>
-              Eventos
-            </CheckboxLabel>
-          </Row>
-          <Row>
-            <Checkbox
-              onChange={() => {}}
-              value={true}
-            />
-            <CheckboxLabel>
-              Caminhos
-            </CheckboxLabel>
-          </Row>
+const CheckboxWrapper = styled.View`
+  margin: 0 5px;
+`;
 
+class List extends React.Component {
 
-        </View>
-      )}
-    </Formik>
-  </Wrapper>
-);
+  render() {
+    const { navigation } = this.props;
+
+    return (
+      <Wrapper>
+        <Border/>
+        <SidebarImage
+          source={require('../static/sidebar-image.png')}
+        />
+        <SidebarLabel>
+          Mostrar no Mapa
+        </SidebarLabel>
+        <Separator/>
+        <Formik
+          initialValues={{ build: true, path: false, event: false }}
+          onSubmit={values => console.log(values)}>
+          {({ setFieldValue, handleSubmit, values }) => (
+            <FilterContext.Provider
+              value={{
+                path: values.path,
+                build: values.build,
+                event: values.event
+              }}
+            >
+              { console.log(values )}
+              <CheckboxWrapper>
+                <Row>
+                  <Checkbox
+                    style={{
+                      margin: 10,
+                      borderRadius: 50,
+                      color: '#41456b',
+                    }}
+                    size={30}
+                    name={'build'}
+                    onChange={(name, checked) => setFieldValue(name, checked)}
+                    checked={values.build}
+                  />
+                  <CheckboxLabel>
+                    EDIFÍCIOS
+                  </CheckboxLabel>
+                </Row>
+                <Row>
+                  <Checkbox
+                    name={'event'}
+                    size={30}
+                    onChange={(name, checked) => setFieldValue(name, checked)}
+                    checked={values.event}
+                    style={{
+                      margin: 10,
+                      borderRadius: 50,
+                      color: '#41456b',
+                    }}
+                  />
+                  <CheckboxLabel>
+                    EVENTOS
+                  </CheckboxLabel>
+                </Row>
+                <Row>
+                  <Checkbox
+                    name={'path'}
+                    size={30}
+                    style={{
+                      margin: 10,
+                      borderRadius: 50,
+                      color: '#41456b',
+                    }}
+                    onChange={(name, checked) => setFieldValue(name, checked)}
+                    checked={values.path}
+                  />
+                  <CheckboxLabel>
+                    CAMINHOS
+                  </CheckboxLabel>
+                </Row>
+              </CheckboxWrapper>
+            </FilterContext.Provider>
+          )}
+        </Formik>
+      </Wrapper>
+    );
+  }
+}
 
 
 const drawerStyles = {
@@ -129,7 +167,7 @@ export default class Sidebar extends React.Component {
           tweenHandler={(ratio) => ({
             main: { opacity:(2-ratio)/2 }
           })}
-          content={<List/>}
+          content={<List {...this.props}/>}
         >
           { children }
         </Drawer>

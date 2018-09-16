@@ -3,6 +3,9 @@ import { ActivityIndicator, Text } from 'react-native';
 import { Marker } from 'react-native-maps';
 import { MapView } from 'expo';
 import styled from 'styled-components';
+import { createFragmentContainer, graphql } from 'react-relay';
+
+import { createQueryRenderer } from '../relay/createQueryRenderer';
 
 const Container = styled.View`
   display: flex;
@@ -12,6 +15,7 @@ const Container = styled.View`
 `;
 
 import withGeolocation from '../hoc/withGeolocation';
+import withFilter from '../hoc/withFilter';
 
 class Map extends React.Component {
 
@@ -31,6 +35,8 @@ class Map extends React.Component {
 
 
   render() {
+
+    console.log(this.props.path);
 
     const { latitude, longitude } = this.state;
 
@@ -68,4 +74,4 @@ class Map extends React.Component {
   }
 }
 
-export default withGeolocation(Map);
+export default withGeolocation(withFilter(Map));

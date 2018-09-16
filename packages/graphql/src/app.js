@@ -1,6 +1,5 @@
-// @flow
 
-import 'isomorphic-fetch';
+// import 'isomorphic-fetch';
 
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
@@ -12,7 +11,7 @@ import { koaPlayground } from 'graphql-playground-middleware';
 
 
 import { schema } from './schema';
-import { registerLoaders } from 'data-models';
+import { registerLoaders } from 'data-models-hackathon';
 
 const app = new Koa();
 const router = new Router();
@@ -37,17 +36,17 @@ const graphqlSettingsPerReq = async req => {
       dataloaders,
     },
     formatError: error => {
-    console.log(error.message);
-    console.log(error.locations);
-    console.log(error.stack);
+      console.log(error.message);
+      console.log(error.locations);
+      console.log(error.stack);
 
-    return {
-      message: error.message,
-      locations: error.locations,
-      stack: error.stack,
-    };
-  },
-};
+      return {
+        message: error.message,
+        locations: error.locations,
+        stack: error.stack,
+      };
+    },
+  };
 };
 
 const graphqlServer = convert(graphqlHttp(graphqlSettingsPerReq));
