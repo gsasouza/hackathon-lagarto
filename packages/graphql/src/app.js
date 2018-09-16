@@ -31,7 +31,6 @@ const graphqlSettingsPerReq = async req => {
     graphiql: process.env.NODE_ENV !== 'production',
     schema,
     context: {
-      user,
       req,
       dataloaders,
     },

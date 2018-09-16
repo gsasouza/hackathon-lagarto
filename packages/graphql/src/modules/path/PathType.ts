@@ -3,7 +3,7 @@
 import { GraphQLObjectType, GraphQLString,  GraphQLList } from 'graphql';
 import { globalIdField } from 'graphql-relay';
 //import { NodeInterface } from '../../interface/NodeInterface';
-import MarkLoader from '../../mark/MarkLoader';
+import * as MarkLoader from '../../mark/MarkLoader';
 import MarkType from '../mark/MarkType';
 
 export default new GraphQLObjectType({
