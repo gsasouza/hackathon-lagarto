@@ -14,6 +14,10 @@ export default class App extends React.Component {
     this.loadFonts();
   }
 
+  componentDidCatch(error, info) {
+    console.log(error, info)
+  }
+
   async loadFonts() {
     await Expo.Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),

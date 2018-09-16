@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Text } from 'react-native';
 import { QueryRenderer } from 'react-relay';
 import environment from './environment';
 
@@ -22,11 +22,7 @@ export function createQueryRenderer(
           render={({ error, props }) => {
             if (error) {
               console.error(error);
-              return (
-                <div>
-                  Ocorreu um erro na requisição
-                </div>
-              );
+              return <Text>{error.message}</Text>;
             }
 
             if (props) {

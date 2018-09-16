@@ -12,6 +12,8 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   flex: 1;
+  width: 100%;
+  height: 100%;
 `;
 
 import withGeolocation from '../hoc/withGeolocation';
@@ -35,11 +37,12 @@ class Map extends React.Component {
 
 
   render() {
-
-    console.log(this.props.path);
-
     const { latitude, longitude } = this.state;
-
+    const { query, navigation } = this.props;
+    const { builds, path } = query;
+    const id = navigation.state.params && navigation.state.params.id;
+    console.log(path)
+    console.log('id',id, !id, !!id);
     if (!latitude || !longitude) {
       return (
         <Container>
@@ -54,7 +57,7 @@ class Map extends React.Component {
     return (
       <MapView
         style={{ flex: 1 }}
-        showsUserLocation
+        mapType={'hybrid'}
         followsUserLocation
         showsMyLocationButton
         showsCompass
@@ -65,13 +68,87 @@ class Map extends React.Component {
           longitudeDelta: 0.003,
         }}
       >
-        <Marker coordinate={{
-          latitude,
-          longitude
-        }} title={'Você'}/>
+        {!id ? builds.map(({ name, mark, id }) => (
+          <Marker
+            key={id}
+            pinColor={'#4a56b8'}
+            coordinate={{
+              latitude: parseFloat(mark.latitude),
+              longitude: parseFloat(mark.longitude)
+            }}
+            title={name}
+          />
+        )) : null}
+        {!!id ? path.marks.map(({ latitude, longitude, type, id }, index) => type === 'path' &&
+          (
+          <Marker
+            key={id}
+            pinColor={index === 4 ? '#FA5319' : '#504485'}
+            coordinate={{
+              latitude: parseFloat(latitude),
+              longitude: parseFloat(longitude)
+            }}
+            title={builds.find(({ mark }) => latitude === mark.latitude && mark.longitude === longitude).name || ''}
+          >
+            {console.log(index)}
+          </Marker>
+        )) : null}
+        <Marker
+          coordinate={{
+            latitude,
+            longitude
+          }}
+          pinColor={'#000'}
+          title={'Você'}
+        />
       </MapView>
     );
   }
 }
 
-export default withGeolocation(withFilter(Map));
+const fragment = createFragmentContainer(
+  withGeolocation(
+    withFilter(
+      Map
+    )
+  ),
+  {
+    query: graphql`
+      fragment Map_query on Query {
+        builds {
+          id
+          name
+          mark {
+            latitude
+            longitude
+          }
+        }
+        path(id: "UGF0aDo1YjllMGE4OWRlNjkxNDVmYmM3NmQzNGM=") {
+          marks {
+            id
+            latitude
+            longitude
+            type
+          }
+        }
+      }
+    `,
+  }
+);
+
+
+
+export default createQueryRenderer(fragment,
+  {
+    query: graphql`
+      query MapQuery {
+        ...Map_query
+      }
+    `,
+  },
+  {
+    queriesParams: ({ navigation }) => ({
+      id: navigation.params.id,
+    }),
+  }
+);

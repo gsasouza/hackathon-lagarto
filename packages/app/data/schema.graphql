@@ -1,0 +1,34 @@
+"""Build data"""
+type Build {
+  """The ID of an object"""
+  id: ID!
+  _id: String
+  name: String
+  mark: Mark
+}
+
+"""Mark data"""
+type Mark {
+  """The ID of an object"""
+  id: ID!
+  _id: String
+  latitude: String
+  longitude: String
+  type: String
+}
+
+"""Path data"""
+type Path {
+  """The ID of an object"""
+  id: ID!
+  _id: String
+  name: String
+  marks: [Mark]
+}
+
+"""The root of all... queries"""
+type Query {
+  builds: [Build]
+  paths: [Path]
+  path(id: ID): Path
+}

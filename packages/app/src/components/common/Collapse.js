@@ -1,18 +1,20 @@
 import React from 'react';
 import Collapsible from 'react-native-collapsible';
-import { Text, View, TouchableOpacity } from 'react-native';
-import {Left, ListItem, Right} from "native-base";
+import { View, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
+import { withNavigation } from 'react-navigation';
+import { Left, Right } from "native-base";
+import withFilter from '../../hoc/withFilter';
 
 
-const Hour = styled.Text`
+const StyledText = styled.Text`
   color: #41456b;
 `;
 
 const Item = styled.View`
   display: flex;
   flex-direction: row;
-  height: 50px;
+  height: 60px;
   width: 100%;
   border-top-width: 1px;
   border-top-color: #4a56b8;
@@ -22,42 +24,95 @@ const Item = styled.View`
   align-items: center;
 `;
 
-export default class Collapse extends React.Component {
+const Content = styled.View`
+  padding: 10px;
+`;
+
+const PathTitle = styled(StyledText)`
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const Description = styled.Text`
+  font-size: 16px;
+  margin-bottom: 10px;
+`;
+
+const ButtonWrapper = styled.TouchableOpacity`
+  z-index: 10;
+`;
+
+const Button = styled.Button`
+  z-index: 999;
+`;
+
+class Collapse extends React.Component {
   state = {
     isOpen: false,
   };
 
   toggleCollapse = () => {
-    console.log('here');
     return this.setState(({ isOpen }) => ({ isOpen: !isOpen }))
   };
 
   render() {
-    const { item } = this.props;
-    const { name = 'Nome', hour = '14:30' } = item;
+    const { item, navigation, setPath, setBuild } = this.props;
+    const { name = 'name', id, description, hour, event } = item;
+
     return (
       <View>
         <TouchableOpacity onPress={this.toggleCollapse}>
           <View>
             <Item>
-              <Left>
-                <Hour>{name.toUpperCase()}</Hour>
-              </Left>
-              <Right>
-                <Hour>{hour}</Hour>
-              </Right>
+              { hour ? (
+                <React.Fragment>
+                  <Left>
+                    <StyledText>{name.toUpperCase()}</StyledText>
+                  </Left>
+                  <Right>
+                    <StyledText>{hour}</StyledText>
+                  </Right>
+                </React.Fragment>
+              ) : (
+                <PathTitle>{name.toUpperCase()}</PathTitle>
+              )}
             </Item>
           </View>
         </TouchableOpacity>
-        <Collapsible collapsed={!this.state.isOpen}>
-          <View>
-            <Text>
-              Bacon ipsum dolor amet chuck turducken landjaeger tongue spare
-              ribs
-            </Text>
-          </View>
-        </Collapsible>
+        <ButtonWrapper onPress={async () => {
+          setBuild(false);
+          setPath(true);
+          await Promise.resolve();
+          return navigation.navigate("Mapa", { id })
+        }}>
+
+          <Collapsible collapsed={!this.state.isOpen}>
+            <Content>
+              <Description>
+                { description }
+              </Description >
+              {
+                !event && (
+                  <Button
+                    onPress={async () => {
+                      setBuild(false);
+                      setPath(true);
+                      await Promise.resolve();
+                      return navigation.navigate("Mapa", { id })
+                    }}
+                    title="Iniciar Rota"
+                    color="#4a56b8"
+                  />
+                )
+              }
+            </Content>
+          </Collapsible>
+        </ButtonWrapper>
+
       </View>
     )
   }
 }
+
+export default withNavigation(withFilter(Collapse));

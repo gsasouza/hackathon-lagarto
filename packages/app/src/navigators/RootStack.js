@@ -5,9 +5,7 @@ import styled from 'styled-components';
 import { Ionicons } from '@expo/vector-icons';
 
 import MapTabs from './MapTabs';
-import Sidebar from '../components/Sidebar';
 import withSnackbar from '../hoc/withSidebar';
-
 
 const HeaderWrapper = styled.View`
   display: flex;
@@ -24,14 +22,9 @@ const IconWrapper = styled.View`
   align-self: flex-start;
 `;
 
-const HeaderTitle = styled.Text`
-  align-self: center;
-  color: #fff;
-`;
-
 const Header = withSnackbar(
   (props) => {
-    const { title = 'Teste', toggleSidebar } = props;
+    const { toggleSidebar } = props;
     return (
       <HeaderWrapper>
         <TouchableOpacity onPress={() => toggleSidebar()}>
@@ -39,9 +32,6 @@ const Header = withSnackbar(
             <Ionicons name="md-menu" size={36} color={'white'} />
           </IconWrapper>
         </TouchableOpacity>
-        <HeaderTitle>
-          { title }
-        </HeaderTitle>
         <View />
       </HeaderWrapper>
     )

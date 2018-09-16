@@ -52,8 +52,6 @@ const CheckboxWrapper = styled.View`
 class List extends React.Component {
 
   render() {
-    const { navigation } = this.props;
-
     return (
       <Wrapper>
         <Border/>
@@ -70,12 +68,18 @@ class List extends React.Component {
           {({ setFieldValue, handleSubmit, values }) => (
             <FilterContext.Provider
               value={{
+                setPath: (value) => {
+                  console.log('here', value)
+                  return setFieldValue('path', value)
+
+                },setBuild: (value) => setFieldValue('build', value),
+                setEvent: (value) => setFieldValue('event', value),
                 path: values.path,
                 build: values.build,
                 event: values.event
               }}
             >
-              { console.log(values )}
+              {console.log(values)}
               <CheckboxWrapper>
                 <Row>
                   <Checkbox

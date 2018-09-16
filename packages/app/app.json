@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Caminhos do Campus",
+    "name": "Emcaminhado",
     "version": "1.0.0",
     "slug": "campus-ways",
     "icon": "./src/static/icon.png",
@@ -12,7 +12,7 @@
       "package": "com.gsasouza.caminhosdocampus",
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyAFxDeMap3BWG3wZ3HefqcyDGQKStd4Qxc"
+          "apiKey": "AIzaSyC2pqjnDm3CQ8322KMBIjXMqQmks6PIjEs"
         }
       }
     }
